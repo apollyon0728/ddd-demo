@@ -27,12 +27,26 @@ public class DomainEventPublisherImpl implements DomainEventPublisher {
     @Autowired
     private DomainEventRepository domainEventRepository;
 
+
+    /**
+     * 发布事件的方法
+     * @param event 事件对象
+     * 发布事件的方法，用于将事件发布到应用程序的事件发布者
+     * @param event 事件对象，必须继承自BaseDomainEvent
+     * @throws IllegalArgumentException 如果事件为空，则抛出此异常
+     */
     @Override
     public <EVENT extends BaseDomainEvent> void publish(EVENT event) {
         log.info("发布事件,event:{}", GsonUtil.gsonToString(event));
         applicationEventPublisher.publishEvent(event);
     }
 
+    /**
+     * 保存并发布事件
+     * @param event 事件对象
+     * @param <EVENT> 事件类型
+     * @throws IllegalArgumentException 如果事件对象为空
+     */
     @Override
     public <EVENT extends BaseDomainEvent> void publishAndSave(EVENT event) {
         log.info("保存并发布事件,event:{}", GsonUtil.gsonToString(event));

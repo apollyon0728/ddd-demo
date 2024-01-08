@@ -25,9 +25,20 @@ public class NeedSaveEventHandlerAspect {
     @Resource
     private DomainEventRepository domainEventRepository;
 
+    /**
+     * 定义切点，用于匹配被注解为 @NeedSaveEventResult 的方法
+     */
+
     @Pointcut("@annotation(com.baiyan.ddd.domain.share.event.NeedSaveEventResult)")
     public void pointcut() {
     }
+
+    /**
+     * 在方法返回后执行的通知方法
+     * @param joinPoint 切入点对象，包含了方法的信息
+     * @param result 返回结果对象
+     * @throws Throwable 可能抛出的异常
+     */
 
     @AfterReturning(value = "pointcut()", returning = "result")
     public void afterReturning(JoinPoint joinPoint, Result result) {

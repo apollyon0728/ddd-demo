@@ -21,6 +21,11 @@ public class RoleQueryApplicationServiceImpl implements RoleQueryApplicationServ
     @Autowired
     private RoleMapper roleMapper;
 
+    /**
+     * 列出给定角色ID的角色DTO列表
+     * @param roleIds 给定的角色ID列表
+     * @return 角色DTO列表，如果给定的角色ID列表为空或者查询结果为空则返回null
+     */
     @Override
     public List<RoleDTO> list(List<Long> roleIds){
         if(CollectionUtils.isEmpty(roleIds)){

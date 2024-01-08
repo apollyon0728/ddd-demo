@@ -12,6 +12,7 @@
     <artifactId>baiyan-ddd-start</artifactId>
 
     <dependencies>
+        <!-- 用户交互层 -->
         <dependency>
             <groupId>com.baiyan</groupId>
             <artifactId>baiyan-ddd-interaction</artifactId>

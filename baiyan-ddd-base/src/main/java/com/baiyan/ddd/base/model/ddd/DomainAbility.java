@@ -20,6 +20,8 @@ public @interface DomainAbility {
      * to be turned into a Spring bean in case of an autodetected component.
      *
      * @return the suggested component name, if any
+     *
+     * 该值可能指示逻辑组件名称的建议，在自动检测组件的情况下将其转换为 Spring bean。
      */
     @AliasFor(annotation = Component.class, attribute = "value") String value() default "";
 

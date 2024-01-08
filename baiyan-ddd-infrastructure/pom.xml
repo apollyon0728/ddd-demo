@@ -20,6 +20,7 @@
             <groupId>com.baiyan</groupId>
             <artifactId>baiyan-ddd-domain</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
