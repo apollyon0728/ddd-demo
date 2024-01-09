@@ -15,15 +15,25 @@ import java.util.Objects;
 
 
 /**
+ * 领域事件发布接口 实现类
  * @author baiyan
  */
 @Component
 @Slf4j
 public class DomainEventPublisherImpl implements DomainEventPublisher {
 
+    /**
+     * 封装事件发布功能的接口。
+     * 用作 的超级接口 ApplicationContext
+     *
+     * {@link org.springframework.context.ApplicationEventPublisher}
+     */
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
+    /**
+     * 领域事件仓储，保存已发生的领域事件，用于事件溯源
+     */
     @Autowired
     private DomainEventRepository domainEventRepository;
 

@@ -16,6 +16,13 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @Slf4j
 public class UserEventHandler {
 
+    /**
+     * 处理用户删除事件的方法
+     *
+     * @param event 用户删除事件
+     * @return 处理结果对象
+     * @throws Exception 如果处理过程中发生异常
+     */
     @TransactionalEventListener(fallbackExecution = true)
     @NeedSaveEventResult
     public Result<Object> handleEvent(UserDeleteEvent event) {

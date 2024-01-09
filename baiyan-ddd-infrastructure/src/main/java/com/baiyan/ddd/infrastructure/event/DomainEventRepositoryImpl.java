@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * 域事件仓储，保存已发生的领域事件，用于事件溯源 - 实现类
  * @author baiyan
  */
 @Repository

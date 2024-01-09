@@ -24,34 +24,55 @@ import java.util.Objects;
 @Service
 public class UserApplicationServiceImpl implements UserApplicationService {
 
+    /**
+     * 创建用户能力
+     */
     @Autowired
     UserCreateAbility userCreateAbility;
 
+    /**
+     * 按照用户名查询用户
+     */
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * 领域事件发布接口
+     */
     @Autowired
     DomainEventPublisher domainEventPublisher;
 
+    /**
+     * 创建用户能力
+     *
+     * @param command 创建用户能力的命令对象
+     * @throws Exception 抛出异常时回滚事务
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(CreateUserAbilityCommand command){
+    public void create(CreateUserAbilityCommand command) {
         userCreateAbility.executeAbility(command);
     }
 
+    /**
+     * 更新用户名
+     *
+     * @param command 更新用户命令对象
+     * @throws Exception 异常类型
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateUserName(UpdateUserCommand command){
+    public void updateUserName(UpdateUserCommand command) {
         //【应用服务仅允许此种判断，抛出错误情况，即为参数校验，不允许实际业务逻辑处理】
         // 前置校验逻辑很长或者通用率高的情况，可以考虑抽取一个UserValidationUtil统一管理前置的业务校验
 
         //先校验用户是否存在
         User user = userRepository.byId(command.getUserId());
-        ValidationUtil.isTrue(Objects.nonNull(user),"user.is.not.exist");
+        ValidationUtil.isTrue(Objects.nonNull(user), "user.is.not.exist");
 
         //修改用户名
         User existUser = userRepository.byUserName(command.getUserName());
-        user.bindUserName(command.getUserName(),existUser);
+        user.bindUserName(command.getUserName(), existUser);
 
         //执行用户修改相关业务逻辑
         user.printUpdate();
@@ -63,10 +84,15 @@ public class UserApplicationServiceImpl implements UserApplicationService {
         domainEventPublisher.publish(new UserUpdateEvent(save));
     }
 
+    /**
+     * 删除用户
+     * @param id 用户ID
+     * @throws Exception 异常
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Long id){
-        ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(id)),"user.is.not.exist");
+    public void delete(Long id) {
+        ValidationUtil.isTrue(Objects.nonNull(userRepository.byId(id)), "user.is.not.exist");
         //根据用户id删除用户聚合
         userRepository.delete(id);
         //发布用户删除领域事件

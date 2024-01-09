@@ -9,8 +9,21 @@ import java.time.LocalDateTime;
 
 /**
  * 领域事件基类
- *
  * @author baiyan
+
+在给定的代码片段中，BaseDomainEvent 是一个抽象类，
+它使用了泛型 <T>。泛型在这里的作用是为 BaseDomainEvent 提供一个类型参数，使得该类能够处理不同类型的数据。
+
+具体来说，泛型 <T> 允许你在创建 BaseDomainEvent 的实例时为其指定一个具体的类型。
+这样，你可以为每个事件定义一个特定类型的数据，从而使事件处理更加灵活和可重用。
+
+泛型在这里的主要作用是增加了代码的灵活性和可重用性。通过使用泛型，你可以创建更加通用和可扩展的事件处理机制，而无需为每种类型的事件定义一个新的类。
+
+ 例如：
+public class UserUpdateEvent extends BaseDomainEvent<User> {
+
+public class UserDeleteEvent extends BaseDomainEvent<Long> {
+
  */
 @Getter
 @Setter

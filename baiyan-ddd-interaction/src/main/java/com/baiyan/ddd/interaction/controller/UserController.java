@@ -24,9 +24,15 @@ import javax.validation.Valid;
 @RequestMapping("/api/user")
 public class UserController {
 
+    /**
+     * 用户应用服务 (My: 属于应用层？)
+     */
     @Autowired
     UserApplicationService userApplicationService;
 
+    /**
+     * 用户查询应用服务
+     */
     @Autowired
     UserQueryApplicationService userQueryApplicationService;
 

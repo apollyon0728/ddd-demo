@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 import java.util.Objects;
 
 /**
+ * 对使用了自定义注解 NeedSaveEventResult 的类进行AOP处理
+ *
  * @author baiyan
  */
 @Aspect
@@ -34,20 +36,20 @@ public class NeedSaveEventHandlerAspect {
     }
 
     /**
-     * 在方法返回后执行的通知方法
-     * @param joinPoint 切入点对象，包含了方法的信息
-     * @param result 返回结果对象
+     * 在方法返回后执行的切面方法
+     *
+     * @param joinPoint 切入点对象
+     * @param result    返回结果对象
      * @throws Throwable 可能抛出的异常
      */
-
     @AfterReturning(value = "pointcut()", returning = "result")
     public void afterReturning(JoinPoint joinPoint, Result result) {
-        BaseDomainEvent baseEvent = (BaseDomainEvent)joinPoint.getArgs()[0];
-        if(Objects.equals(result.getCode(), BaseResult.CODE_SUCCESS)){
+        BaseDomainEvent baseEvent = (BaseDomainEvent) joinPoint.getArgs()[0];
+        if (Objects.equals(result.getCode(), BaseResult.CODE_SUCCESS)) {
             // 更新事件状态为成功
             log.info("更新事件{}状态为成功", baseEvent.getId());
             baseEvent.handleSuccess();
-        }else {
+        } else {
             // 更新状态失败
             log.info("更新事件{}状态为失败", baseEvent.getId());
             baseEvent.handleFailed();
