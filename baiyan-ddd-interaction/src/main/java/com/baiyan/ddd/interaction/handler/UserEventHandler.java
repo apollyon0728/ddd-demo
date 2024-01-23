@@ -37,7 +37,7 @@ public class UserEventHandler {
 }
 
 /**
- * NeedSaveEventHandlerAspect 对 @NeedSaveEventResult 做了AOP处理， 处理 UserDeleteEvent 事件
+ * NeedSaveEventHandlerAspect 对 添加@NeedSaveEventResult 做了AOP处理， 处理 UserDeleteEvent 事件
  * {@link com.baiyan.ddd.infrastructure.event.NeedSaveEventHandlerAspect}
  */
 

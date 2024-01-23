@@ -1,5 +1,13 @@
 infrastructure : 基础设施
 
+基础设施层依赖领域层
+
+其依赖：
+<artifactId>baiyan-ddd-api</artifactId>
+<artifactId>baiyan-ddd-domain</artifactId>
+
+
+
 ## [基础设施层] ★
 
 **领域驱动设计（DDD）中的基础设施层主要负责实现领域层中定义的策略和业务规则，处理与外部系统或资源的交互，提供数据持久化等功能。**
