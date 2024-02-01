@@ -25,7 +25,7 @@ import javax.validation.Valid;
 public class UserController {
 
     /**
-     * 用户应用服务 (My: 属于应用层？)
+     * 用户应用服务 (My: 属于应用层)
      */
     @Autowired
     UserApplicationService userApplicationService;

@@ -1,3 +1,6 @@
+“interaction 用户交互层” 依赖  “baiyan-ddd-application 应用服务层”
+
+
 [用户交互层]
 
 一切外来影响系统内聚合的均视为用户行为

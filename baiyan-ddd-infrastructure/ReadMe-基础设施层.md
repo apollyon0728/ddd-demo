@@ -1,11 +1,9 @@
-infrastructure : 基础设施
-
+infrastructure —— 基础设施层 
 基础设施层依赖领域层
 
 其依赖：
 <artifactId>baiyan-ddd-api</artifactId>
 <artifactId>baiyan-ddd-domain</artifactId>
-
 
 
 ## [基础设施层] ★
